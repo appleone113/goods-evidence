@@ -1,0 +1,125 @@
+{
+  "runAt": "2026-11-11 23:18:21",
+  "mode": "FISCO BCOS 真链（fisco.enabled=true）",
+  "passed": 17,
+  "total": 17,
+  "allPass": true,
+  "context": {
+    "pid": "2120536595130527746",
+    "code": "P2120536595130527746",
+    "name": "答辩全流程演练-1111231816",
+    "tamper_tid": "2120536604890673154",
+    "tamper_restored": true,
+    "chain_records": [
+      [
+        "product",
+        "0x38a4aee131394dc9846744288195bef999546dff681d4f2a9db38aaeacdfdf95",
+        "336"
+      ],
+      [
+        "quality",
+        "0xa7a1fed4d3966deabb768c02bb268fa515cd7de746823b458756679a8de74f0f",
+        "337"
+      ],
+      [
+        "repair",
+        "0x4bf298b7c13d3b45649d776b795d0c394d0fc410e28f6c05c7586612c0daaef7",
+        "338"
+      ],
+      [
+        "trade",
+        "0xc8b09fd91b2ae2e00d55927647e10a7515f0e3dbdf21dd4fd8c2cc7030eca14a",
+        "340"
+      ]
+    ],
+    "height_before": 334,
+    "height_after": 340
+  },
+  "steps": [
+    {
+      "step": "0 环境自检",
+      "ok": true,
+      "detail": "链上块高=334（双向 TLS getBlockNumber）"
+    },
+    {
+      "step": "1 三角色登录",
+      "ok": true,
+      "detail": "ENTERPRISE / USER / ADMIN 均 code=200，enterpriseId=1"
+    },
+    {
+      "step": "2 上传商品实物图",
+      "ok": true,
+      "detail": "/api/file/944f1eef-9439-41db-9d4e-8e071c4b6147_rehearsal.png"
+    },
+    {
+      "step": "3 商品登记（一物一码）",
+      "ok": true,
+      "detail": "productId=2120536595130527746 code=P2120536595130527746 qr=http://192.168.106.221:8080/api/verify/view?code=P2120536595130527746"
+    },
+    {
+      "step": "4 登记后立即验真",
+      "ok": true,
+      "detail": "authentic=True 履历事件数=1"
+    },
+    {
+      "step": "5 质检录入",
+      "ok": true,
+      "detail": "qualityId=2120536598993481729 DB=2120536598993481729\t国家质检中心\t合格"
+    },
+    {
+      "step": "6 维修录入",
+      "ok": true,
+      "detail": "repairId=2120536601396817922 DB=2120536601396817922\t官方维修点\t更换电池，功能复检正常"
+    },
+    {
+      "step": "7 权属转移",
+      "ok": true,
+      "detail": "tradeId=2120536604890673154 DB(current_owner,status)=答辩演练买家\t3"
+    },
+    {
+      "step": "8 全流程后验真（缓存失效实证）",
+      "ok": true,
+      "detail": "authentic=True 事件数 1 → 4（增加=3）"
+    },
+    {
+      "step": "9 全生命周期履历",
+      "ok": true,
+      "detail": "事件数=4 状态=3"
+    },
+    {
+      "step": "10 手机扫码 HTML 验真页",
+      "ok": true,
+      "detail": "HTTP=200 bytes=3364 含验真通过=True 含商品图=True"
+    },
+    {
+      "step": "11 监管看板 / 趋势图 / 巡检 / 告警",
+      "ok": true,
+      "detail": "dashboard=['productCount', 'tradeCount', 'verifyCount', 'chainRecordCount', 'recentOperations'] 趋势点数=7 巡检={'checkedCount': 129, 'passCount': 126, 'mismatchCount': 3, 'missingCount': 16} 告警字段=['verifyFailTotal', 'recentFailed', 'lastMismatchCount', 'lastMissingCount', 'lastCheckedAt']"
+    },
+    {
+      "step": "12 链下篡改检测（TC-07）",
+      "ok": true,
+      "detail": "mismatch 3 → 4，点名到本次商品=True"
+    },
+    {
+      "step": "12b 还原后复检",
+      "ok": true,
+      "detail": "mismatch 回到 3"
+    },
+    {
+      "step": "12c 还原后验真",
+      "ok": true,
+      "detail": "authentic=True"
+    },
+    {
+      "step": "13 链上凭证核对",
+      "ok": true,
+      "detail": "链高 334→340，本次 4 条存证 ['product', 'quality', 'repair', 'trade']，块高=[336, 337, 338, 340]"
+    },
+    {
+      "step": "14 商品图落库核对",
+      "ok": true,
+      "detail": "DB image_url=/api/file/944f1eef-9439-41db-9d4e-8e071c4b6147_rehearsal.png"
+    }
+  ]
+}

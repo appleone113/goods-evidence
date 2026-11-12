@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品交易存证系统 · 真链验证报告</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#ffffff; --ink:#1f2328; --sub:#5b6472;
+    --line:#e3e6eb; --ok:#1a7f37; --ok-bg:#e8f5ec; --bad:#c0392b;
+    --bad-bg:#fdecea; --accent:#2563eb; --accent-bg:#eef4ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:32px 20px;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.7}
+  .wrap{max-width:920px;margin:0 auto}
+  h1{font-size:24px;margin:0 0 6px}
+  .meta{color:var(--sub);font-size:13px;margin-bottom:28px}
+  h2{font-size:17px;margin:32px 0 12px;padding-left:10px;border-left:4px solid var(--accent)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#fafbfc;color:var(--sub);font-weight:600;width:150px}
+  tr:last-child td,tr:last-child th{border-bottom:none}
+  code{font-family:"Cascadia Mono",Consolas,monospace;font-size:12.5px;
+    background:#f0f2f5;padding:1px 6px;border-radius:4px;word-break:break-all}
+  .tag{display:inline-block;padding:2px 10px;border-radius:11px;font-size:12px;font-weight:600}
+  .tag.ok{background:var(--ok-bg);color:var(--ok)}
+  .tag.bad{background:var(--bad-bg);color:var(--bad)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .stat .v{font-size:25px;font-weight:700;letter-spacing:-.5px}
+  .stat .k{font-size:12.5px;color:var(--sub);margin-top:3px}
+  .note{background:var(--accent-bg);border-left:3px solid var(--accent);
+    padding:11px 15px;border-radius:0 8px 8px 0;font-size:13.5px;margin-top:12px}
+  ul{margin:8px 0;padding-left:22px}li{margin:4px 0;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>商品交易存证系统 · 真链验证报告</h1>
+  <div class="meta">FISCO BCOS v3.x（4 节点 Air 版，群组 group0）· Java SDK 3.6.0 ·
+    首轮验证 2026-10-28 16:11–16:20 · <b>换网段复验 2026-11-11 23:06（见第六节）</b></div>
+
+  <div class="grid">
+    <div class="stat"><div class="v">112</div><div class="k">首轮验证后链上区块高度</div></div>
+    <div class="stat"><div class="v">334</div><div class="k">11-11 复验后链上区块高度</div></div>
+    <div class="stat"><div class="v">1.86</div><div class="k">真实存证吞吐（笔/秒）</div></div>
+    <div class="stat"><div class="v">538 ms</div><div class="k">单笔上链平均耗时</div></div>
+    <div class="stat"><div class="v">6 / 6</div><div class="k">端到端用例通过</div></div>
+  </div>
+
+  <h2>一、链环境</h2>
+  <div class="card"><table>
+    <tr><th>节点</th><td>VMware Ubuntu（4 节点 Air 版，均已启动）· 首轮 <code>192.168.234.110</code>；11-11 改桥接后 <code>192.168.106.110</code></td></tr>
+    <tr><th>群组 / 链</th><td><code>group0</code> / <code>chain0</code></td></tr>
+    <tr><th>权属合约</th><td><code>0x412d17a4b6a79953bc891106b420bcd4493cd1cd</code></td></tr>
+    <tr><th>存证合约</th><td><code>0x6a1ade97880c62cd64734daa375fdab1dc7a3cca</code></td></tr>
+    <tr><th>调用方式</th><td><code>AssembleTransactionProcessor</code>（SDK 高层封装，自动 ABI 编码 + 签名）</td></tr>
+  </table></div>
+
+  <h2>二、端到端业务验证</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>步骤</th><th>结果</th><th>链上凭证</th></tr></thead>
+      <tbody>
+        <tr><td>商品登记（权属上链）</td><td><span class="tag ok">通过</span></td>
+            <td>productId <code>2115355817291591682</code>，链上写入初始 owner</td></tr>
+        <tr><td>质检存证</td><td><span class="tag ok">通过</span></td>
+            <td>区块 <code>58</code> · tx <code>0xa7fb61a0…</code></td></tr>
+        <tr><td>维修存证</td><td><span class="tag ok">通过</span></td>
+            <td>区块 <code>59</code> · tx <code>0xd050f25b…</code></td></tr>
+        <tr><td>权属转移 + 交易存证</td><td><span class="tag ok">通过</span></td>
+            <td>区块 <code>60</code>（转移）/ <code>61</code>（存证）</td></tr>
+        <tr><td>扫码验真</td><td><span class="tag ok">authentic = true</span></td>
+            <td>链上哈希与本地重算一致</td></tr>
+        <tr><td>吞吐量基准（50 笔）</td><td><span class="tag ok">完成</span></td>
+            <td>耗时 27508 ms，区块 61 → 112</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>三、安全性实证（核心创新点）</h2>
+  <div class="card"><table>
+    <tr><th>篡改检测</th><td>
+      将链下 <code>trade_record.buyer</code> 由 <code>buyer001</code> 改为 <code>attacker999</code>（链上哈希不变）<br>
+      → 重新扫码验真：<span class="tag bad">authentic = false</span>
+      「验真未通过：未找到链上存证或哈希不一致」<br>
+      数据还原后复验：<span class="tag ok">authentic = true</span>
+    </td></tr>
+    <tr><th>权属前置校验</th><td>
+      将链下 <code>product.current_owner</code> 改为 <code>hacker999</code>（链上仍为 <code>buyer001</code>），
+      再以该身份发起转移<br>
+      → 被合约 <code>require</code> 拦截：<span class="tag bad">caller is not the owner</span><br>
+      说明链下数据被篡改也无法完成权属转移，链上校验是最后一道防线
+    </td></tr>
+  </table></div>
+
+  <h2>四、本轮修复的两个关键问题</h2>
+  <div class="card"><ul>
+    <li><b>底层 API 误用</b>：<code>client.sendTransaction(to, data, bool)</code> 的第二个参数实为 nodeId，
+        传合约地址会报 <code>-4010 no connection available</code>。改用 SDK 高层封装
+        <code>AssembleTransactionProcessor</code> 解决。</li>
+    <li><b>存证 ID 取值脆弱</b>：原设计让合约自增 ID 再回读返回值，一旦 SDK 未解析出返回值会全部落成 <code>-1</code>，
+        导致 <code>chain_record</code> 主键冲突。改为<b>链下雪花算法发号、连同哈希一起写链</b>，
+        业务主键与链上账本 key 天然一致。</li>
+  </ul></div>
+
+  <h2>五、性能对比：真实联盟链 vs 链下模拟</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>实现</th><th>样本</th><th>总耗时</th><th>吞吐（笔/秒）</th><th>单笔耗时</th></tr></thead>
+      <tbody>
+        <tr><td>FiscoChainServiceImpl（真实链）</td><td>200 笔</td><td>107 712 ms</td>
+            <td><b>1.86</b></td><td>538.56 ms</td></tr>
+        <tr><td>MockChainServiceImpl（内存账本）</td><td>1 000 笔</td><td>331 ms</td>
+            <td><b>3 021.15</b></td><td>0.331 ms</td></tr>
+      </tbody>
+    </table>
+    <div class="note" style="margin-top:14px">
+      真实链受 PBFT 共识与出块间隔制约，单笔上链约需 <b>538 ms</b>，吞吐约为内存模拟的
+      <b>1 / 1624</b>。这一差距是「批量上链 + 异步化」优化策略的量化依据：
+      批量合并 N 笔为一次合约调用、业务写库后先返回再由异步任务补写回执，
+      可把用户感知延迟从 538 ms 降到毫秒级，而链上吞吐上限保持不变。
+    </div>
+  </div>
+
+  <h2>六、2026-11-11 复验：换网段后重新联调</h2>
+  <div class="card">
+    <p style="font-size:14px;color:var(--sub);margin-top:0">
+      虚机由 NAT 改为桥接，节点 IP 漂移导致 SDK 连接地址失效。本节记录重新打通的过程与证据，
+      首轮（10-28）数据保留在前面各节不动。
+    </p>
+    <table>
+      <thead><tr><th>环节</th><th>结果</th></tr></thead>
+      <tbody>
+        <tr><td>IP 漂移确认</td><td>ARP 表 <code>192.168.106.110 → 00-0c-29-9d-5f-3c</code> 与 VMX <code>ethernet0.generatedAddress</code> 一致，确认是同一台虚机；旧 <code>192.168.234.110</code> 全部 Timeout</td></tr>
+        <tr><td>节点启动</td><td><code>bash nodes/127.0.0.1/start_all.sh</code> → node0～node3 全部 start successfully；Windows 侧 20200～20203 可达</td></tr>
+        <tr><td>配置修复</td><td>运行时 <code>backend/fisco/config.toml</code> 的 <code>peers</code> 改为 <code>192.168.106.110:20200/20201</code>；<code>src/main/resources/fisco/config.toml</code> 是源码副本，改它不生效</td></tr>
+        <tr><td>真链启动</td><td>日志 <code>blockNumber: 326</code>、<code>[真链] 调用层初始化完成：group=group0</code>，无 ERROR / 无 -4010</td></tr>
+        <tr><td>登记验证</td><td><span class="tag ok">通过</span> tx <code>0xa71ace22…c7</code> · 块高 <code>332</code> · <code>authentic=true</code></td></tr>
+        <tr><td>权属转移</td><td><span class="tag ok">通过</span> <code>current_owner</code> 由 <code>1</code> → <code>真链验证买家</code>、<code>status 0→3</code>；trade 存证块高 <code>334</code>；转移后验真仍 <code>true</code></td></tr>
+        <tr><td>手机验真页</td><td><span class="tag ok">通过</span> <code>/api/verify/view?code=P…</code> 返回 2803 字节自包含 HTML，含「验真通过」</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <b>链上交叉核对（最硬证据）</b>：用 SDK 客户端证书走双向 TLS 直调节点
+      <code>https://192.168.106.110:20200</code> 的 <code>getBlockNumber</code>
+      （明文 HTTP 会被直接断开，必须带 <code>sdk.crt / sdk.key</code>）：
+      登记前链高 <b>330</b> → 登记后 <b>332</b>（登记发 2 笔交易），
+      与 <code>chain_record.block_height=332</code> 完全一致；权属转移后链高 <b>334</b>。
+    </div>
+    <div class="note" style="border-left-color:var(--bad)">
+      <b>判定口径（踩坑）</b>：Mock 链同样会生成 <code>0x</code> + 64 位十六进制伪哈希，
+      <b>只看 tx_hash 格式会误判为真链</b>。真正的判据是块高——Mock 用 200000+ 模拟段，
+      真链块高可与 <code>getBlockNumber</code> 交叉核对。
+      <code>scripts/validate-real-chain.py</code> 已按此口径实现。
+    </div>
+  </div>
+
+  <div class="card">
+    <b>复现命令</b>
+    <ul>
+      <li><code>bash scripts/check-real-chain.sh</code>（自动从 config.toml 读 peers，换 IP 不用改脚本）</li>
+      <li><code>java -jar target\goods-evidence-1.0.0.jar --server.port=8080 --fisco.enabled=true --app.public-base-url=http://192.168.106.221:8080</code></li>
+      <li><code>python scripts/validate-real-chain.py</code></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品交易存证系统 · 速查卡</title>
+<style>
+  :root{
+    --bg:#f5f7fa; --card:#ffffff; --ink:#1f2937; --sub:#5b6675;
+    --line:#e3e8ef; --blue:#2563eb; --blue-bg:#eff6ff;
+    --green:#15803d; --green-bg:#f0fdf4; --green-line:#86efac;
+    --amber:#b45309; --amber-bg:#fffbeb; --amber-line:#fcd34d;
+    --code-bg:#f1f5f9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:28px 16px 60px;background:var(--bg);color:var(--ink);
+       font-family:"Microsoft YaHei","PingFang SC","Segoe UI",Arial,sans-serif;
+       font-size:14px;line-height:1.7}
+  .wrap{max-width:960px;margin:0 auto}
+  header{text-align:center;margin-bottom:22px}
+  h1{margin:0 0 6px;font-size:26px;letter-spacing:.5px}
+  .sub{color:var(--sub);font-size:13px}
+  .hero{background:var(--green-bg);border:2px solid var(--green-line);border-radius:14px;
+        padding:20px 24px;margin-bottom:24px}
+  .hero .tag{display:inline-block;background:var(--green);color:#fff;border-radius:5px;
+             padding:2px 9px;font-size:12px;margin-bottom:8px}
+  .hero .big{font-size:19px;font-weight:700;color:#14532d;margin:0 0 8px}
+  .hero p{margin:4px 0;color:#166534}
+  .url{display:inline-block;background:#fff;border:1px solid var(--green-line);
+       border-radius:6px;padding:3px 10px;font-family:Consolas,Monaco,monospace;
+       font-size:15px;color:#14532d;font-weight:700}
+  section{background:var(--card);border:1px solid var(--line);border-radius:12px;
+          padding:20px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+  h2{margin:0 0 14px;font-size:17px;padding-left:11px;border-left:4px solid var(--blue)}
+  h2 .n{color:var(--blue);margin-right:8px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:#f8fafc;font-weight:700;color:var(--sub);white-space:nowrap}
+  td code,.path,.cmd{font-family:Consolas,Monaco,monospace;font-size:12.8px;
+       background:var(--code-bg);padding:2px 6px;border-radius:4px;color:#0f172a;
+       word-break:break-all}
+  .rec{background:var(--green-bg)}
+  .star{color:#d97706;white-space:nowrap}
+  ol{margin:0;padding-left:22px}
+  ol li{margin-bottom:11px;padding-left:4px}
+  ol li b{color:var(--blue)}
+  .step{display:inline-block;background:var(--blue);color:#fff;border-radius:50%;
+        width:20px;height:20px;line-height:20px;text-align:center;font-size:12px;
+        margin-right:6px}
+  .note{background:var(--amber-bg);border-left:4px solid var(--amber-line);
+        padding:11px 14px;border-radius:0 8px 8px 0;margin-top:12px;font-size:13px;color:#78350f}
+  .note b{color:var(--amber)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .box{background:#f8fafc;border:1px solid var(--line);border-radius:9px;padding:13px 15px}
+  .box .t{font-weight:700;margin-bottom:5px;color:var(--blue)}
+  .box .d{font-size:13px;color:var(--sub)}
+  footer{text-align:center;color:var(--sub);font-size:12.5px;margin-top:26px;
+         border-top:1px dashed var(--line);padding-top:16px}
+  .ok{color:var(--green);font-weight:700}
+  @media(max-width:680px){.grid2{grid-template-columns:1fr}body{padding:16px 10px 40px}
+    section{padding:16px}table{font-size:12.5px}th,td{padding:7px}}
+  @media print{body{background:#fff;padding:0}section,.hero{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>商品交易存证系统 · 速查卡</h1>
+  <div class="sub">答辩 / 演示前 30 秒扫一眼 · 更新于 2026-11-11 · 吴文炜的毕设工程</div>
+</header>
+
+<div class="hero">
+  <span class="tag">一句话结论</span>
+  <p class="big">系统现在就开着，什么都不用装、不用敲命令。</p>
+  <p>给老师看：打开浏览器（Edge / Chrome），地址栏输入 <span class="url">http://localhost:5173</span> 回车即可。</p>
+  <p>以后开机后打不开了，才需要双击桌面的 <b>「打开商品交易存证系统.bat」</b>。</p>
+</div>
+
+<section>
+  <h2><span class="n">一</span>以后怎么打开系统</h2>
+  <table>
+    <tr><th>方式</th><th>怎么做</th><th>什么时候用</th><th>难度</th></tr>
+    <tr class="rec">
+      <td><b>① 双击桌面图标（推荐）</b></td>
+      <td>双击 <code>打开商品交易存证系统.bat</code> → 自动检查 MySQL / 后端 / 前端，缺什么补什么 → 自动弹出浏览器</td>
+      <td>每天开机后第一次用；服务没开、网页打不开时</td>
+      <td class="star">⭐</td>
+    </tr>
+    <tr>
+      <td>② 直接开浏览器</td>
+      <td>地址栏输入 <span class="path">http://localhost:5173</span></td>
+      <td>服务已经开着（<b>现在就是</b>），最快</td>
+      <td class="star">⭐</td>
+    </tr>
+    <tr>
+      <td>③ 命令行看状态</td>
+      <td><span class="cmd">python scripts/launch.py --check</span></td>
+      <td>想确认各服务在不在线、排错时用；只打印不改动</td>
+      <td class="star">⭐⭐</td>
+    </tr>
+  </table>
+  <div class="note">
+    <b>启动器会自动选链：</b>VMware 虚机里的 FISCO 节点能连上就走<b>真链</b>（有真实 tx_hash 和块高）；连不上自动降级 <b>Mock 模拟链</b>，页面功能照样完整，答辩不会卡住。关掉那个黑窗口不影响后台服务，要彻底关闭请双击 <code>停止商品交易存证系统.bat</code>。
+  </div>
+  <div class="note" style="background:var(--blue-bg);border-left-color:var(--blue)">
+    <b>想自己敲命令、不靠 bat？</b>桌面 <code>商品交易存证系统-启动命令.txt</code> 里有完整可复制的命令清单
+    （后端 / 前端两条命令、真链与 Mock 只差一个参数、MySQL、停止方式、排错），<b>不用问我</b>。难度 ⭐⭐
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">二</span>文件都在哪（找不到就翻这里）</h2>
+  <div class="box" style="margin-bottom:14px">
+    <div class="t">工程总目录（代码、文档、脚本全在里面）</div>
+    <div class="d path">D:\User\Data\WorkBuddy\2026-10-27-20-41-49\code-design</div>
+  </div>
+  <table>
+    <tr><th>要看什么</th><th>文件 / 目录</th><th>说明</th></tr>
+    <tr><td>可直接运行的后端</td><td class="path">backend\target\goods-evidence-1.0.0.jar</td><td>已打包好，双击 bat 就是启动它</td></tr>
+    <tr><td>后端源码</td><td class="path">backend\src\main\java\edu\jxue\goodsevidence\</td><td>8 个控制器 / 10 张表 / 9 大模块</td></tr>
+    <tr><td>前端源码</td><td class="path">frontend\src\views\</td><td>enterprise 企业端 / user 用户端 / regulator 监管端</td></tr>
+    <tr><td>一键启动器</td><td class="path">scripts\launch.py</td><td>桌面两个 bat 都调它</td></tr>
+    <tr><td>建表脚本</td><td class="path">sql\schema.sql</td><td>库名 second_hand_chain，10 张表</td></tr>
+    <tr><td>完整运行说明</td><td class="path">README.md</td><td>环境要求、真链 / Mock 切换、构建命令</td></tr>
+    <tr><td>真链证据</td><td class="path">真链验证报告.html</td><td>双向 TLS 查块高、tx_hash 与链高交叉核对</td></tr>
+    <tr><td>答辩演练记录</td><td class="path">答辩全流程演练记录-20261111.md</td><td>17/17 步通过、截图、异常预案</td></tr>
+    <tr><td>局域网 / 手机演示</td><td class="path">局域网演示操作卡.html</td><td>换 WiFi、重刷二维码、防火墙说明</td></tr>
+    <tr><td>承诺兑现核对</td><td class="path">..\开题报告承诺-系统实现核对表.md</td><td>在<b>工作区根目录</b>，不在 code-design 里</td></tr>
+    <tr><td>系统设计方案</td><td class="path">..\商品交易存证系统-系统设计方案.html</td><td>同样在工作区根目录</td></tr>
+  </table>
+  <div class="note">
+    <b>别改错文件：</b>链地址只有 <code>backend\fisco\config.toml</code> 是运行时真正读的；<code>backend\src\main\resources\fisco\config.toml</code> 是源码副本，改它不生效。
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">三</span>登录账号</h2>
+  <table>
+    <tr><th>角色</th><th>账号</th><th>密码</th><th>能演示什么</th></tr>
+    <tr><td>企业端</td><td><code>ent</code></td><td><code>123456</code></td><td>商品登记、图片上传、质检维修、权属转移、我的商品</td></tr>
+    <tr><td>用户端</td><td><code>user</code></td><td><code>123456</code></td><td>扫码验真、全生命周期履历、商品实物图</td></tr>
+    <tr><td>监管端</td><td><code>admin</code></td><td><code>123456</code></td><td>监管看板、交易趋势图、数据完整性巡检、审计日志</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="n">四</span>给老师演示：照着点就行</h2>
+  <ol>
+    <li><span class="step">1</span><b>企业端登记一物一码</b> <span class="star">⭐</span><br>
+      用 <code>ent/123456</code> 登录 → 「商品登记」→ 填名称、上传一张实物图 → 提交 → 页面显示<b>二维码 + 商品编码</b>。这一步会同时写商品表、生成二维码、哈希上链。</li>
+    <li><span class="step">2</span><b>扫码验真</b> <span class="star">⭐⭐</span><br>
+      手机直接扫刚生成的二维码 → 打开手机 HTML 验真页，显示「验真通过 + 商品实物图 + 履历」。<br>
+      电脑上也可切到 <code>user/123456</code> → 扫码验真页 → 手输编码或<b>上传二维码图片</b> → 点「验真」。</li>
+    <li><span class="step">3</span><b>质检 / 维修 / 权属转移</b> <span class="star">⭐</span><br>
+      回到企业端依次登记「质检」「维修」「权属转移」，每一步都会产生一条新的链上存证。</li>
+    <li><span class="step">4</span><b>再验真一次，看履历变化</b> <span class="star">⭐⭐</span><br>
+      用户端重新验真，履历事件从 <b>1 条变成 4 条</b> —— 这就是「写操作后缓存立即失效」的实证，也是最能讲清楚的亮点。</li>
+    <li><span class="step">5</span><b>监管看板收尾</b> <span class="star">⭐</span><br>
+      换 <code>admin/123456</code> → 看权属转移趋势图（7/14/30 天切换）、数据完整性巡检、审计日志。可以现场改一条库里的买家字段再点巡检，mismatch 会点名到被改的商品，演示「链下篡改能查出来」。</li>
+  </ol>
+  <div class="note">
+    <b>已演练过的现成数据：</b>编码 <code>P2120536595130527746</code>（真链、验真通过、4 类存证齐全，块高 336/337/338/340）。万一现场网络出问题，直接用它演示，不用现场新建商品。<br>
+    <b>巡检基线噪声：</b>看板显示 mismatch=3 / missing=16 是早期 Mock 阶段的历史遗留数据，不是故障，<b>不要现场删数据</b>，按口径说明即可。
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">五</span>老师用自己的手机 / 别的电脑看</h2>
+  <div class="grid2">
+    <div class="box">
+      <div class="t">前提：连同一个 WiFi</div>
+      <div class="d">手机或老师的电脑浏览器打开：<br><span class="url">http://192.168.106.221:5173</span></div>
+    </div>
+    <div class="box">
+      <div class="t">二维码扫出来是什么</div>
+      <div class="d">内容是 <span class="path">http://192.168.106.221:8080/api/verify/view?code=...</span>，手机直接打开 HTML 验真页，不是一堆 JSON。</div>
+    </div>
+  </div>
+  <div class="note">
+    <b>换 WiFi / 换网段后必做：</b>局域网 IP 会变（上面这个 <code>192.168.106.221</code> 是当前的）。IP 一变，<b>二维码里写死的旧地址就失效</b>，需要：① 用新 IP 重启后端 <span class="cmd">--app.public-base-url=http://新IP:8080</span>；② 登录后调 <span class="cmd">POST /api/product/refresh-qr</span> 批量重刷历史二维码；③ 真链还要把 <code>backend\fisco\config.toml</code> 的 <code>peers</code> 改成虚机新 IP。详细命令见 <b>局域网演示操作卡.html</b>。<br>
+    <b>手机摄像头扫不了：</b>内置预览窗口 / WebView 拿不到摄像头授权，不是代码 bug。用系统自带 Edge / Chrome 打开，或在验真页用「上传二维码图片」，或允许地址栏摄像头权限。
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">六</span>出问题了怎么自查</h2>
+  <table>
+    <tr><th>现象</th><th>多半是</th><th>怎么办</th><th>难度</th></tr>
+    <tr><td>网页打不开 / 连接被拒绝</td><td>服务没在跑</td><td>双击桌面「打开商品交易存证系统.bat」，等黑窗口提示就绪</td><td class="star">⭐</td></tr>
+    <tr><td>页面能开但登录报 500</td><td>MySQL 没启动</td><td>启动 <code>MySQL80</code> 服务，再重新双击启动器</td><td class="star">⭐</td></tr>
+    <tr><td>启动器提示「模拟链」</td><td>VMware 虚机 / FISCO 节点没开</td><td>功能照常演示；要真实 tx_hash 就开虚机再重新双击</td><td class="star">⭐⭐</td></tr>
+    <tr><td>手机扫码跳不通</td><td>换 WiFi 后 IP 变了</td><td>按第五节重刷二维码</td><td class="star">⭐⭐</td></tr>
+    <tr><td>验真一直不通过</td><td>编码输错 / 扫到了完整 URL</td><td>只输 <code>P+数字</code>；前端已自动解析 <code>code=</code> 参数</td><td class="star">⭐</td></tr>
+    <tr><td>想把系统彻底关掉</td><td>—</td><td>双击桌面「停止商品交易存证系统.bat」（只停 8080 / 5173）</td><td class="star">⭐</td></tr>
+  </table>
+</section>
+
+<footer>
+  当前状态：<span class="ok">真链已打通 ✅</span> ｜ 答辩全流程演练 <span class="ok">17/17 通过 ✅</span> ｜ 前端三端真点按钮 0 报错 ｜ 链高 340 ｜ 版本 <code>8e23e46</code><br>
+  桌面四个入口：打开 bat · 停止 bat · 启动命令.txt · 本速查卡 ｜ 完整说明见工程内 README.md
+</footer>
+
+</div>
+</body>
+</html>

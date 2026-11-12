@@ -1,0 +1,39 @@
+# ===== 构建产物 =====
+backend/target/
+frontend/dist/
+
+# ===== 依赖 =====
+node_modules/
+frontend/node_modules/
+
+# ===== 运行时数据（不上库）=====
+backend/uploads/
+backend/logs/
+
+# ===== FISCO SDK 证书与私钥（含敏感信息，禁止上传 GitHub）=====
+# 只保留 config.toml.example 模板；真实证书从链节点拷贝后自行填写
+backend/fisco/*.key
+backend/fisco/*.crt
+backend/fisco/config.toml
+backend/fisco/account/
+backend/fisco/accounts/
+
+# ===== 本地环境变量覆盖（不要提交）=====
+.env
+.env.*
+!.env.example
+
+# ===== 前端构建缓存 =====
+frontend/node_modules/.vite/
+*.timestamp-*.mjs
+
+# ===== IDE / 系统 =====
+.idea/
+*.iml
+.vscode/
+Thumbs.db
+desktop.ini
+
+# ===== 日志 / 临时 =====
+*.log
+logs/

@@ -1,0 +1,39 @@
+# =============================================================
+# FISCO BCOS v3 Java SDK 配置【源码内参考模板 · 运行时不读取】
+# -------------------------------------------------------------
+# 运行时实际读取的是 jar 外的 backend/fisco/config.toml
+# （见 application.yml 的 fisco.config-path = ./fisco/config.toml）。
+# 请复制 backend/fisco/config.toml.example 为 config.toml 后再填写，
+# 改本文件不会生效。下面的 peers 只是占位示例。
+#
+# 接真链时的两个硬性要求（否则发交易会报 -4010 no connection available）：
+#   1. 证书必须使用 SDK 默认文件名 ca.crt / sdk.crt / sdk.key，
+#      不要改名成 ssl.crt / ssl.key 并在配置里显式指定。
+#   2. [network].peers 要填真实节点 RPC 地址（Air 版默认 20200 起）。
+# =============================================================
+
+[common]
+    # 群组 ID：FISCO BCOS 3.x 默认单群组为 group0
+    group_id = "group0"
+    # 非国密链留空；国密链填 gm
+    ssl_type = ""
+    # SSL 连接健康检查间隔（毫秒）
+    ssl_health_check_interval = 180000
+
+[cryptoMaterial]
+    # 证书目录：classpath 相对路径，ca.crt / ssl.crt / ssl.key 放这里
+    cert_path = "fisco"
+
+[network]
+    # 节点 RPC 监听地址列表（Air 版单群组默认 20200 起）
+    peers = ["127.0.0.1:20200"]
+    # 自身证书下发时允许的节点 IP，不指定留空
+    allowed_peer_ips_for_self_cert_collect = ""
+
+[threadPool]
+    receive_msg_thread_size = 4
+    net_msg_group_size = 2
+    max_blocking_queue_size = 102400
+    worker_pool_size = 8
+    scheduled_pool_size = 4
+    callback_pool_size = 8

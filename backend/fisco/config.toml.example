@@ -1,0 +1,36 @@
+# =============================================================
+# FISCO BCOS v3 Java SDK 配置 · 模板（复制为 config.toml 后修改）
+# -------------------------------------------------------------
+# 这个文件不含任何密钥，可以安全上传 GitHub。
+# 真实的 config.toml 与所有证书/私钥已在 .gitignore 中排除。
+#
+# ⚠️ 没有真链就别做下面这些：保持 fisco.enabled=false 用 Mock 模式，
+#    九个模块、页面、验真都能完整演示，不需要这个目录里的任何文件。
+#
+# 要接自己的 FISCO BCOS 真链时：
+#   1. 从链节点 ~/fisco/nodes/127.0.0.1/sdk/ 拷贝 ca.crt / sdk.crt / sdk.key
+#      到本目录 backend/fisco/，文件名必须保持默认，别改成 ssl.crt / ssl.key
+#      （改过名会报 -4010 no connection available）。
+#   2. 复制本文件为 config.toml：cp config.toml.example config.toml
+#   3. 把 certPath / keyStoreDir 改成你机器上的绝对路径，peers 改成节点 RPC 地址。
+#   4. 后端启动加 --fisco.enabled=true，或设环境变量 FISCO_ENABLED=true。
+#   5. 合约需先部署，并把地址填进 application.yml 的 fisco.contract.*-address。
+# =============================================================
+
+[cryptoMaterial]
+certPath = "/改成你的绝对路径/backend/fisco"
+disableSsl = "false"
+useSMCrypto = "false"
+
+[network]
+messageTimeout = "10000"
+defaultGroup = "group0"
+# 节点 RPC 地址，Air 版 4 节点默认 20200~20203，SDK 连其中 1~2 个即可
+peers = ["改成节点IP:20200", "改成节点IP:20201"]
+
+[account]
+keyStoreDir = "/改成你的绝对路径/backend/fisco/account"
+accountFileFormat = "pem"
+
+[threadPool]
+threadPoolSize = "8"
